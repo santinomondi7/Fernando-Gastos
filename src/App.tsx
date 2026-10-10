@@ -30,7 +30,6 @@ import {
   updateCategoryInDb,
   updateExpenseInDb,
 } from './services/expenseService';
-import { isSupabaseConfigured } from './services/supabaseClient';
 import {
   Category,
   Expense,
@@ -66,8 +65,6 @@ export default function App() {
     typeof navigator !== 'undefined' ? navigator.onLine : true
   );
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  const configured = isSupabaseConfigured();
 
   // Selector de período compartido
   const todayStr = getTodayInCordoba();
@@ -385,31 +382,6 @@ export default function App() {
           </div>
         </div>
       </div>
-
-      {/* Aviso si falta configurar las variables de entorno de Supabase */}
-      {!configured && (
-        <div
-          role="alert"
-          className="bg-amber-50 border-b border-amber-200 px-4 py-3.5 text-amber-950 text-sm sm:text-base"
-        >
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div className="flex items-start sm:items-center gap-2.5">
-              <AlertCircle className="w-5 h-5 text-amber-700 shrink-0 mt-0.5 sm:mt-0" />
-              <span>
-                Falta configurar <code className="font-mono font-bold">VITE_SUPABASE_URL</code> y{' '}
-                <code className="font-mono font-bold">VITE_SUPABASE_ANON_KEY</code> para guardar los gastos en Supabase.
-              </span>
-            </div>
-            <button
-              type="button"
-              onClick={() => setIsSetupGuideOpen(true)}
-              className="px-4 py-2 text-sm font-bold text-white bg-amber-900 hover:bg-amber-800 rounded-lg transition-colors whitespace-nowrap shrink-0 self-start sm:self-auto cursor-pointer"
-            >
-              Ver instrucciones y copiar SQL
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Aviso de pérdida de conexión */}
       {!isOnline && (
