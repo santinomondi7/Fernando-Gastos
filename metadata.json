@@ -1,0 +1,6 @@
+{
+  "name": "Control de Gastos",
+  "description": "Aplicación personal para registrar y analizar gastos en pesos argentinos con carga manual y por voz, conectada a Supabase.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
